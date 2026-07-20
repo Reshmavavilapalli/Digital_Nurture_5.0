@@ -1,0 +1,119 @@
+import React, { Component } from "react";
+import GuestPage from "./components/GuestPage";
+import UserPage from "./components/UserPage";
+
+
+class App extends Component {
+
+
+  constructor(props){
+
+    super(props);
+
+
+    this.state = {
+
+      isLoggedIn:false
+
+    };
+
+  }
+
+
+
+  // Login function
+
+  handleLogin = () => {
+
+    this.setState({
+
+      isLoggedIn:true
+
+    });
+
+  }
+
+
+
+  // Logout function
+
+  handleLogout = () => {
+
+    this.setState({
+
+      isLoggedIn:false
+
+    });
+
+  }
+
+
+
+  render(){
+
+
+    let page;
+
+
+    // Conditional rendering using element variable
+
+    if(this.state.isLoggedIn){
+
+      page = <UserPage />;
+
+    }
+
+    else{
+
+      page = <GuestPage />;
+
+    }
+
+
+
+    return(
+
+      <div>
+
+
+        <h1>
+          Flight Ticket Booking Application
+        </h1>
+
+
+
+        {
+          this.state.isLoggedIn ?
+
+          <button onClick={this.handleLogout}>
+            Logout
+          </button>
+
+          :
+
+          <button onClick={this.handleLogin}>
+            Login
+          </button>
+
+        }
+
+
+
+        <hr />
+
+
+
+        {page}
+
+
+      </div>
+
+    );
+
+  }
+
+
+}
+
+
+export default App;
